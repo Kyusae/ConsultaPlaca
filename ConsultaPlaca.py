@@ -10,7 +10,12 @@ Placas = input('Digite as placas a serem consultas (Separe por virgulas): ').spl
 class ConsultaPlaca:
     def __init__(self, Placas):
         self.Placa = Placas
-        self.driver = webdriver.Firefox(executable_path="geckodriver.exe")
+        try:
+            self.driver = webdriver.Firefox(executable_path="geckodriver.exe")
+        except:
+            options = webdriver.ChromeOptions()
+            options.add_argument('lang=pt-br')
+            self.driver = webdriver.Chrome(executable_path=r'chromedriver.exe', chrome_options=options) 
 
     def login(self):
         driver = self.driver
